@@ -1,44 +1,45 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <title>JoeDunne Project1</title>
-    <link rel="stylesheet" type="text/css" href="/style.css">
+<html lang="en" class="has-background-danger-dark">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>D&D Spellbook Home</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer">
+        <link rel="stylesheet" href="styles/default-styles.css">
+        <script src="/app-header.js" type="module"></script>
+        <script src="/app-footer.js" type="module"></script>
+        <script src="/app-nav.js" type="module"></script>
+    </head>
+    <body>
+        <app-nav page="home"></app-nav>
 
-    <script>
-        const init = () => {
+        <app-header>Home</app-header>
 
-        }
+        <div class="column">  
+            <div class="hero is-danger">
+                <div class="hero-head">
+                    <p class="title ml-2">
+                        Dungeons & Dragons Spellbook Writer
+                    </p>
+                    <div class="columns">
+                        <p class="subtitle m-5 column">
+                            This web app serves as both a searcher for the wide collection of spells in D&D, as well as a way for you to<br>
+                            create your own list of spells to use as a reference for your characters. By entering information about your<br>
+                            character, this app will automatically check to see which spells you can choose from, where you can then edit<br>
+                            and save a custom spell list that your character can use. In addition, you will be able to favorite select<br>
+                            spells that you frequently use for easy reference.
+                        </p>
+                        <img class="p-3 column is-one-third" style="float:right;" src="images/spellbook.png" alt="spellbook graphic">
+                    </div>
+                </div>
+                <div class="hero-footer m-2">Contact: jmd1494@rit.edu</div>
+            </div>
+        </div>
 
-        const sendRequest = async (e) => {
-            e.preventDefault();
+        <app-footer class="ml-1">Home</app-footer>
 
-            //Some default code, may remove at later point
-            const url = '/';
-            const method = 'GET';
-
-            let response = await fetch(url, {
-                method,
-                headers: {
-                    command: '',
-                },
-            });
-
-            handleResponse(response);
-        }
-
-        const handleResponse = (response) => {
-
-        }
-
-        window.onload = init;
-    </script>
-</head>
-<body>
-    <section id="game">
-        This is just some sample text
-    </section>
-    <section id="controls">
-        This stuff should be bold
-    </section>
-</body>
+        <script src="src/index.js"></script>
+    </body>
 </html>

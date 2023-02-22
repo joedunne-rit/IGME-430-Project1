@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>D&D Spellbook Documentation</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+        <link rel="stylesheet" href="styles/default-styles.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer">
+        <script src="src/app-header.js" type="module"></script>
+        <script src="src/app-footer.js" type="module"></script>
+        <script src="src/app-nav.js" type="module"></script>
+    </head>
+    <body>
+        <app-nav page="documentation"></app-nav>
+
+        <app-header>Documentation</app-header>
+
+        <!-- Main Page -->
+        <main>
+            <div class="has-background-danger mr-1 p-1"> 
+            <div class="is-large p-4">
+                <!-- Row #1 -->
+                <div class="title has-text-light">D&D Spellbook Documentation</div>
+                
+                <!-- Row #2  -->
+                <div class="box mt-2">
+                    <h2 class="subtitle has-text-weight-bold mb-0">Project Requirements</h2>
+                    <span><a href="https://github.com/tonethar/IGME-330-Fall-2022/blob/main/projects/p1-checkpoint-2.md">https://github.com/tonethar/IGME-330-Fall-2022/blob/main/projects/p1-checkpoint-2.md</a></span>
+                </div>
+                <div class="box mt-2">
+                    <h2 class="subtitle has-text-weight-bold mb-0">Proposal</h2>
+                    <p>The project I have in mind is a service that will allow people to search for a wide variety of Dungeons and Dragons spells.<br>
+                        While they search for spells that they want, they'll be able to favorite spells they like, as well as create a customized spell list<br> 
+                        for any character they're using, which can be saved and edited at any time. Details such as spell levels and class specific spells<br> 
+                        will be checked to ensure the spell list is appropriate.<br><br>
+
+                        This will be for frequent D&D players who want a simpler way to find and organize spells for their characters and campaigns.<br> 
+                        The goal is to provide an easy method of searching for spells, and allow an immediate method to create a spell list for their use.<br><br>
+                        
+                        I will be using the open5e api and bulma for this project.</p>
+                </div>
+                <div class="box mt-2">
+                    <h2 class="subtitle has-text-weight-bold mb-0">Major Features</h2>
+                    <ul>
+                        <li>Search for various D&D spell for use and reference</li>
+                        <li>Favorite frequently used and viewed spells for quick and easy viewing</li>
+                        <li>Create customizeable spell lists that can be used as a reference for character sheets</li>
+                        <li>Save these spell lists for future reference, which can be viewed in favorites</li>
+                    </ul>
+                </div>
+                <div class="box mt-2">
+                <h2 class="subtitle has-text-weight-bold mb-0">Resources</h2>
+                <ul>
+                    <li><a href="https://open5e.com/api-docs">https://open5e.com/api-docs</a></li>
+                    <li><a href="https://bulma.io/documentation">https://bulma.io/documentation</a></li>
+                    <li><a href="https://fontawesome.com/icons/">https://fontawesome.com/icons/</a></li>
+                    <li><a href="https://www.w3schools.com/tags/att_input_type_number.asp">https://www.w3schools.com/tags/att_input_type_number.asp</a></li>
+                    <li><a href="https://stackoverflow.com/questions/11599666/get-the-value-of-checked-checkbox">https://stackoverflow.com/questions/11599666/get-the-value-of-checked-checkbox</a></li>
+                </ul>
+                </div>
+                <div class="box mt-2">
+                    <h2 class="subtitle has-text-weight-bold mb-0">API</h2>
+                    <ul>
+                        <li>API Home: <a href="https://open5e.com/">https://open5e.com/</a></li>
+                        <li>Docs: <a href="https://open5e.com/api-docs">https://open5e.com/api-docs</a></li>
+                        <li>Endpoint: <a href="https://api.open5e.com/spells">https://api.open5e.com/spells</a></li>
+                    </ul>
+                </div>
+                <div class="box mt-2">
+                    <h2 class="subtitle has-text-weight-bold mb-0">Noteworthy</h2>
+                </div>
+                <div class="box mt-2">
+                    <h2 class="subtitle has-text-weight-bold mb-0">Grading</h2>
+                </div>
+                <div class="box mt-2">
+                    <h2 class="subtitle has-text-weight-bold mb-0">To do</h2>
+                    <ul class="mt-3 mb-3">
+                        <li>Create spell list creation</li>
+                        <li>Ability to unfavorite specific spells</li>
+                        <li>More search parameters to cover all options</li>
+                    </ul>
+                </div>
+                <div class="box mt-2">
+                    <h2 class="subtitle has-text-weight-bold mb-0">UI interface</h2>
+                    <p class="mt-3 mb-3">Below is an overall plan for this app's UI. It includes the search options, character spell list creator,<br>
+                    and search results. Searches can be by name or conditions, spells in the character spell list can be removed<br>
+                    at any time, and search results can be expanded for more details, as well as favorited.</p>
+                    <img class="p-2 has-background-danger-dark" src="images/spellbook-ui.png" alt="spellbook ui">
+                </div>
+            </div>
+            </div>
+        </main>
+
+        <app-footer>Documentation</app-footer>
+
+        <script src="src/index.js"></script>
+    </body>
+</html>

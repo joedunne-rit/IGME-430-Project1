@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>D&D Spellbook Favorites</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer">
+        <link rel="stylesheet" href="styles/default-styles.css">
+        <script src="src/app-header.js" type="module"></script>
+        <script src="src/app-footer.js" type="module"></script>
+        <script src="src/app-nav.js" type="module"></script>
+        <script src="src/favorites.js" type="module"></script>
+    </head>
+    <body>
+        <app-nav page="favorites"></app-nav>
+
+        <app-header>Favorites</app-header>
+
+        <!-- Main Page -->
+        <main class="px-1 py-1">
+            <div class="has-background-danger mr-1 p-1"> 
+            <div class="is-large p-4">
+                <!-- Title and clear favorites button -->
+                <div class="title has-text-light">Spellbook Favorites</div>
+                <button class="button" id="btn-wipe-faves">Clear favorites</button>
+                
+                <!-- Favorite spells list  -->
+                <div class="box mt-2">
+                <h2 class="subtitle has-text-weight-bold mb-0">Favorite spells</h2>
+                <!--Change to div with result cards later-->
+                <div id="favorites-list"></div>
+                </div>
+
+                <!-- Community favorite spells -->
+                <div class="box mt-2">
+                    <h2 class="subtitle has-text-weight-bold mb-0">Community favorites</h2>
+                    <div id="community-favorites"></div>
+                </div>
+        
+                <!-- Spell sheets -->
+                <div class="box mt-2"> 
+                    <h2 class="subtitle has-text-weight-bold mb-0">Spell lists</h2>
+                    <p>This is where saved spell lists will appear</p>
+                </div>
+                </div>
+            </div>
+        </main>
+
+        <app-footer>Favorites</app-footer>
+
+        <script src="src/index.js"></script>
+    </body>
+</html>

@@ -1,0 +1,29 @@
+@import url('https://fonts.googleapis.com/css2?family=Underdog&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap');
+
+.title{
+  font-family:'Dancing Script';
+  font-size: 50px;
+}
+
+ol{
+  list-style-position: inside;
+}
+
+#element-card-holder{
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(500px,1fr));
+  grid-gap: 0.5em;
+}
+
+#favorites-list{
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(500px,1fr));
+  grid-gap: 0.5em;
+}
+
+#community-favorites{
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(500px,1fr));
+  grid-gap: 0.5em;
+}

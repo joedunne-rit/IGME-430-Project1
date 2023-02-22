@@ -3,17 +3,31 @@ const url = require('url');
 // const query = require('querystring');
 
 const pageHandler = require('./pageResponses.js');
+const mediaHandler = require('./mediaResponses.js');
+const javaScriptHandler = require('./javascriptResponses.js');
 
 const port = process.env.PORT || process.env.NODE_PORT || 3000;
 
 const urlStruct = {
   GET: {
+    //page & style files
     '/': pageHandler.getIndex,
-    '/style.css': pageHandler.getStyle,
+    '/app': pageHandler.getApp,
+    '/favorites': pageHandler.getFavorites,
+    '/documentation': pageHandler.getDocumentation,
+    '/default-styles.css': pageHandler.getStyle,
+
+    //javascript files
+    '/app-header.js': javaScriptHandler.getAppHeader,
+
+    //media files
+    '/images/spellbook.png': mediaHandler.getSpellBook,
+    '/images/spellbook-ui.png': mediaHandler.getUI,
+
     '/notFound': pageHandler.notFound,
   },
   HEAD: {
-    '/notFound': pageHandler.notFoundHead
+    '/notFound': pageHandler.notFoundHead,
   },
   POST: {
 

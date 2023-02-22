@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>JoeDunne Project1</title>
+    <link rel="stylesheet" type="text/css" href="/style.css">
+
+    <script>
+        const init = () => {
+
+        }
+
+        const sendRequest = async (e) => {
+            e.preventDefault();
+
+            //Some default code, may remove at later point
+            const url = '/';
+            const method = 'GET';
+
+            let response = await fetch(url, {
+                method,
+                headers: {
+                    command: '',
+                },
+            });
+
+            handleResponse(response);
+        }
+
+        const handleResponse = (response) => {
+
+        }
+
+        window.onload = init;
+    </script>
+</head>
+<body>
+    <section id="game">
+        This is just some sample text
+    </section>
+    <section id="controls">
+        This stuff should be bold
+    </section>
+</body>
+</html>

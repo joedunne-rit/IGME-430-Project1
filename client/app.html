@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>D&D Spellbook App</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer">
+        <style>
+            select#field-limit{
+              width:2.5rem;
+            }
+            h2.subtitle{
+              font-family:'Underdog',sans-serif;
+            }
+        </style>
+        <link rel="stylesheet" href="styles/default-styles.css">
+        <script src="src/app-header.js" type="module"></script>
+        <script src="src/app-footer.js" type="module"></script>
+        <script src="src/app-nav.js" type="module"></script>
+        <script src="src/app.js" type="module"></script>
+    </head>
+    <body>
+        <app-nav page="app"></app-nav>
+
+        <app-header>App</app-header>
+
+        <!-- Main Page -->
+        <main>
+            <div class="has-background-danger mr-1 p-1">
+                <div class="is-large p-4">
+                    <!-- Row 1 -->
+                    <div class="title has-text-light">Spellbook App</div>
+
+                    <!-- Row #2 - Instructions -->
+                    <div class="box mt-2">
+                        <p class="mb-5">
+                            Use these options to narrow down what spells you want to find
+                        </p>
+
+                        <!-- Row #2 - Controls-->
+                        <!--Controls modify how the url is constructed, depending on the value used-->
+                        <div class="columns">
+                            <div id="box-controls" class="column is-two-fifths has-background-danger-dark">
+                                
+                                <span class="has-text-weight-bold has-text-light">Specific search:</span>
+                                <input id="search-bar" class="text is-large">
+                                <span class="has-text-weight-bold has-text-light">class:</span>
+                                <select id="class" class="select is-small">
+                                    <option>--</option>
+                                    <option>Bard</option>
+                                    <option>Cleric</option>
+                                    <option>Druid</option>
+                                    <option>Paladin</option>
+                                    <option>Sorcerer</option>
+                                    <option>Wizard</option>
+                                    <option>Warlock</option>
+                                </select><br>
+
+                                <span class="has-text-weight-bold has-text-light">school:</span>
+                                <select id="school" class="select is-small">
+                                    <option>--</option>
+                                    <option>Abjuration</option>
+                                    <option>Conjuration</option>
+                                    <option>Divination</option>
+                                    <option>Enchantment</option>
+                                    <option>Evocation</option>
+                                    <option>Illusion</option>
+                                    <option>Necromancy</option>
+                                    <option>Transmutation</option>
+                                </select>
+
+                                <span class="has-text-weight-bold has-text-light">level:</span>
+                                <select id="level" class="select is-small">
+                                    <option>--</option>
+                                    <option>Cantrip</option>
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                    <option>4</option>
+                                    <option>5</option>
+                                    <option>6</option>
+                                    <option>7</option>
+                                    <option>8</option>
+                                    <option>9</option>
+                                </select>
+
+                                <label class="checkbox has-text-weight-bold has-text-light">
+                                    <!--Maybe make a yes/no/don't care option?-->
+                                    <!--So user can specify if they do or don't want concentration or if it matters-->
+                                    <input id="concentration" type="checkbox">
+                                    Requires concentration
+                                </label>
+
+                                <label class="checkbox has-text-weight-bold has-text-light">
+                                    <input id="ritual" type="checkbox">
+                                    Ritual cast
+                                </label><br>
+
+                                <span class="has-text-weight-bold has-text-light">result limit:</span>
+                                <input id="result-limit" type="number" class="has-background-light" min="1" value="50">
+                                <br>
+
+                                <!--Search/clear results buttons-->
+                                <div class="control is-inline-block ml-6 mt-2">
+                                    <button
+                                    id="btn-search"
+                                    class="button is-primary is-medium"
+                                    title="Search for some dog pictures!"
+                                    >
+                                        Search!
+                                    </button>
+                                </div>
+
+                                <div class="contorl is-inline-block ml-6">
+                                    <button
+                                    id="btn-clear"
+                                    class="button is-warning is-medium"
+                                    title="Clear All"
+                                    >
+                                        Clear All
+                                    </button>
+                                </div>
+                            </div>
+                            <div id="list-creator" class="column has-background-danger subtitle">
+                                <span>This is where your custom spell list will appear</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Row #3 - Results -->
+                    <div class="box has-background-danger-dark">
+                        <div class="is-large p-1">
+                            <h2 class="subtitle has-text-weight-bold mb-2 mt-0 has-text-light">Results</h2>
+                            <p id="element-status" class="has-text-warning mb-2">Awaiting command</p>
+                            <div id="element-card-holder">
+                                <!-- Search results go here -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <app-footer>App</app-footer>
+
+        <script src="src/index.js"></script>
+    </body>
+</html>
