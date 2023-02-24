@@ -5,22 +5,31 @@ const url = require('url');
 const pageHandler = require('./pageResponses.js');
 const mediaHandler = require('./mediaResponses.js');
 const javaScriptHandler = require('./javascriptResponses.js');
+const favoritesHandler = require('./favoriteResponses.js');
 
 const port = process.env.PORT || process.env.NODE_PORT || 3000;
 
 const urlStruct = {
   GET: {
-    //page & style files
+    // page & style files
     '/': pageHandler.getIndex,
-    '/app': pageHandler.getApp,
-    '/favorites': pageHandler.getFavorites,
-    '/documentation': pageHandler.getDocumentation,
+    '/home.html': pageHandler.getIndex,
+    '/app.html': pageHandler.getApp,
+    '/favorites.html': pageHandler.getFavorites,
+    '/documentation.html': pageHandler.getDocumentation,
     '/default-styles.css': pageHandler.getStyle,
 
-    //javascript files
+    // javascript files
     '/app-header.js': javaScriptHandler.getAppHeader,
+    '/app-footer.js': javaScriptHandler.getAppFooter,
+    '/app-nav.js': javaScriptHandler.getAppNav,
+    '/app.js': javaScriptHandler.getApp,
+    '/favorites.js': javaScriptHandler.getFavorites,
+    '/search-result.js': javaScriptHandler.getSearchResult,
+    '/storage.js': javaScriptHandler.getStorage,
+    '/firebase.js': javaScriptHandler.getFirebase,
 
-    //media files
+    // media files
     '/images/spellbook.png': mediaHandler.getSpellBook,
     '/images/spellbook-ui.png': mediaHandler.getUI,
 
@@ -30,7 +39,7 @@ const urlStruct = {
     '/notFound': pageHandler.notFoundHead,
   },
   POST: {
-
+    '/addFavorite': favoritesHandler.addFavorite,
   },
 };
 

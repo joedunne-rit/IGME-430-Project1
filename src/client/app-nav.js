@@ -1,7 +1,6 @@
-"use strict";
-//Navigation template
-const appNav = document.createElement("template")
-appNav.innerHTML=`
+// Navigation template
+const appNav = document.createElement('template');
+appNav.innerHTML = `
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <nav class="navbar has-shadow is-white">
@@ -25,31 +24,31 @@ appNav.innerHTML=`
             </div>
         </div>
     </nav>
-    `
+    `;
 
-//Component that will serve as the app's navigation
-//Current page will be in bold
-class Navigation extends HTMLElement{
-    constructor(){
-        super();
-        this.attachShadow({mode: "open"});
-        this.shadowRoot.appendChild(appNav.content.cloneNode(true));
+// Component that will serve as the app's navigation
+// Current page will be in bold
+class Navigation extends HTMLElement {
+  constructor() {
+    super();
+    this.attachShadow({ mode: 'open' });
+    this.shadowRoot.appendChild(appNav.content.cloneNode(true));
 
-        this.burgerIcon = this.shadowRoot.querySelector("#burger")
-        this.navbarMenu = this.shadowRoot.querySelector("#nav-links")
+    this.burgerIcon = this.shadowRoot.querySelector('#burger');
+    this.navbarMenu = this.shadowRoot.querySelector('#nav-links');
 
-        this.burgerIcon.addEventListener('click', () => {
-            this.navbarMenu.classList.toggle('is-active');
-        })
-    }
+    this.burgerIcon.addEventListener('click', () => {
+      this.navbarMenu.classList.toggle('is-active');
+    });
+  }
 
-    connectedCallback(){
-        this.render()
-    }
+  connectedCallback() {
+    this.render();
+  }
 
-    render(){
-        const page = this.getAttribute('page');
-        this.shadowRoot.querySelector(`#${page}`).setAttribute("class", "navbar-item has-text-weight-bold");
-    }
+  render() {
+    const page = this.getAttribute('page');
+    this.shadowRoot.querySelector(`#${page}`).setAttribute('class', 'navbar-item has-text-weight-bold');
+  }
 }
 customElements.define('app-nav', Navigation);

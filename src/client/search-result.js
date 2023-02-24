@@ -1,10 +1,8 @@
-"use strict";
-import * as storage from "./storage.js";
+import * as storage from './storage.js';
 
-
-//Result card template
-const result = document.createElement("template");
-result.innerHTML= `
+// Result card template
+const result = document.createElement('template');
+result.innerHTML = `
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
     <style>
     .card {
@@ -32,87 +30,86 @@ result.innerHTML= `
             <div>Classes that can use spell: <span id="classes">class list</span></div>
         </div>
     </div>
-`
+`;
 
-//Component used for displaying a search result
-//Contains a favorite button to add spell to favorites list
-class SearchResult extends HTMLElement{
-    constructor(){
-        super();
-        this.attachShadow({mode:"open"});
-        this.shadowRoot.appendChild(result.content.cloneNode(true));
+// Component used for displaying a search result
+// Contains a favorite button to add spell to favorites list
+class SearchResult extends HTMLElement {
+  constructor() {
+    super();
+    this.attachShadow({ mode: 'open' });
+    this.shadowRoot.appendChild(result.content.cloneNode(true));
+  }
+
+  connectedCallback() {
+    // Find some way to shorten this code? Feels unessecarily lengthy
+    this.shadowRoot.querySelector('#name').innerHTML = this.dataset.name;
+    this.shadowRoot.querySelector('#school').innerHTML = this.dataset.school;
+    this.shadowRoot.querySelector('#level').innerHTML = this.dataset.level;
+    this.shadowRoot.querySelector('#cast-time').innerHTML = this.dataset.castTime;
+    this.shadowRoot.querySelector('#duration').innerHTML = this.dataset.duration;
+    this.shadowRoot.querySelector('#components').innerHTML = this.dataset.components;
+    this.shadowRoot.querySelector('#range').innerHTML = this.dataset.range;
+    this.shadowRoot.querySelector('#ritual').innerHTML = this.dataset.ritual;
+    this.shadowRoot.querySelector('#concentration').innerHTML = this.dataset.concentration;
+    this.shadowRoot.querySelector('#description').innerHTML = this.dataset.description;
+    this.shadowRoot.querySelector('#higher-level').innerHTML = this.dataset.higherLevel;
+    if (this.dataset.higherLevel == '') {
+      this.shadowRoot.querySelector('#high-level-intro').innerHTML = '';
+    }
+    this.shadowRoot.querySelector('#material').innerHTML = this.dataset.material;
+    if (this.dataset.material == '') {
+      this.shadowRoot.querySelector('#material-intro').innerHTML = '';
+    }
+    this.shadowRoot.querySelector('#classes').innerHTML = this.dataset.classes;
+
+    // If spell is already in favorites, black out favoite button
+    this.favoriteBtn = this.shadowRoot.querySelector('#favorite');
+    const favoritesList = storage.getFavorites();
+    for (const spell of favoritesList) {
+      if (spell == this.dataset.name.toLowerCase()) {
+        this.favoriteBtn.setAttribute('class', 'button m-2 is-dark');
+        this.favoriteBtn.innerHTML = 'Favorited';
+      }
     }
 
-    connectedCallback(){
-        //Find some way to shorten this code? Feels unessecarily lengthy
-        this.shadowRoot.querySelector("#name").innerHTML = this.dataset.name;
-        this.shadowRoot.querySelector("#school").innerHTML = this.dataset.school;
-        this.shadowRoot.querySelector("#level").innerHTML = this.dataset.level;
-        this.shadowRoot.querySelector("#cast-time").innerHTML = this.dataset.castTime;
-        this.shadowRoot.querySelector("#duration").innerHTML = this.dataset.duration;
-        this.shadowRoot.querySelector("#components").innerHTML = this.dataset.components;
-        this.shadowRoot.querySelector("#range").innerHTML = this.dataset.range;
-        this.shadowRoot.querySelector("#ritual").innerHTML = this.dataset.ritual;
-        this.shadowRoot.querySelector("#concentration").innerHTML = this.dataset.concentration;
-        this.shadowRoot.querySelector("#description").innerHTML = this.dataset.description;
-        this.shadowRoot.querySelector("#higher-level").innerHTML = this.dataset.higherLevel;
-        if(this.dataset.higherLevel == ""){
-            this.shadowRoot.querySelector("#high-level-intro").innerHTML = "";
-        }
-        this.shadowRoot.querySelector("#material").innerHTML = this.dataset.material;
-        if(this.dataset.material == ""){
-            this.shadowRoot.querySelector("#material-intro").innerHTML = "";
-        }
-        this.shadowRoot.querySelector("#classes").innerHTML = this.dataset.classes;
+    this.callback = this.callback || ((obj) => console.log(`${obj}`));
 
-        //If spell is already in favorites, black out favoite button
-        this.favoriteBtn = this.shadowRoot.querySelector("#favorite");
-        const favoritesList = storage.getFavorites();
-        for (let spell of favoritesList){
-            if (spell == this.dataset.name.toLowerCase()){
-                this.favoriteBtn.setAttribute("class", "button m-2 is-dark")
-                this.favoriteBtn.innerHTML = "Favorited"
-            }
-        }
+    // When favorite is clicked, add to local storage favorites and increases faves by 1 on database
+    // Does not do anything if already on favorites
+    this.favoriteBtn.onclick = () => {
+      if (!storage.checkFavorites(this.dataset.name.toLowerCase())) {
+        storage.addFavorite(this.dataset.name.toLowerCase());
+        this.favoriteBtn.setAttribute('class', 'button m-2 is-dark');
+        this.favoriteBtn.innerHTML = 'Favorited';
+        const { name } = this.dataset;
+        this.callback(name);
+      } else { console.log(`${this.dataset.name} already added to favorites`); }
+    };
+  }
 
-        this.callback = this.callback || ((obj) => console.log(`${obj}`));
-
-        //When favorite is clicked, add to local storage favorites and increases faves by 1 on database
-        //Does not do anything if already on favorites
-        this.favoriteBtn.onclick = () => {
-            if (!storage.checkFavorites(this.dataset.name.toLowerCase())){
-                storage.addFavorite(this.dataset.name.toLowerCase());
-                this.favoriteBtn.setAttribute("class", "button m-2 is-dark")
-                this.favoriteBtn.innerHTML = "Favorited"
-                const name = this.dataset.name;
-                this.callback(name);
-            }
-            else { console.log(`${this.dataset.name} already added to favorites`); }
-        }
-    }
-
-    disconnectedCallback(){
-        this.favoriteBtn.onclick = null;
-    }
+  disconnectedCallback() {
+    this.favoriteBtn.onclick = null;
+  }
 }
-customElements.define('search-result',SearchResult);
+customElements.define('search-result', SearchResult);
 
-//Create a single card result using json object
-export function createResult(spell){
-    //Creates a result with info provided (lengthy)
-    const newResult = document.createElement("search-result");
-    newResult.dataset.name = spell.name;
-    newResult.dataset.school = spell.school;
-    newResult.dataset.level = spell.level;
-    newResult.dataset.castTime = spell.casting_time;
-    newResult.dataset.duration = spell.duration;
-    newResult.dataset.components = spell.components;
-    newResult.dataset.range = spell.range;
-    newResult.dataset.ritual = spell.ritual;
-    newResult.dataset.concentration = spell.concentration;
-    newResult.dataset.description = spell.desc;
-    newResult.dataset.higherLevel = spell.higher_level;
-    newResult.dataset.material = spell.material;
-    newResult.dataset.classes = spell.dnd_class;
-    return newResult;
+// Create a single card result using json object
+export function createResult(spell) {
+  // Creates a result with info provided (lengthy)
+  const newResult = document.createElement('search-result');
+  newResult.dataset.name = spell.name;
+  newResult.dataset.school = spell.school;
+  newResult.dataset.level = spell.level;
+  newResult.dataset.castTime = spell.casting_time;
+  newResult.dataset.duration = spell.duration;
+  newResult.dataset.components = spell.components;
+  newResult.dataset.range = spell.range;
+  newResult.dataset.ritual = spell.ritual;
+  newResult.dataset.concentration = spell.concentration;
+  newResult.dataset.description = spell.desc;
+  newResult.dataset.higherLevel = spell.higher_level;
+  newResult.dataset.material = spell.material;
+  newResult.dataset.classes = spell.dnd_class;
+  return newResult;
 }

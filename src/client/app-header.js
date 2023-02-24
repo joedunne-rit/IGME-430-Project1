@@ -1,6 +1,5 @@
-"use strict";
-//header template
-const header = document.createElement("template");
+// header template
+const header = document.createElement('template');
 header.innerHTML = `
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -15,12 +14,12 @@ header.innerHTML = `
     </header>
 `;
 
-//Slot element using header template
-class AppHeader extends HTMLElement{
-    constructor(){
-        super();
-        this.attachShadow({mode: "open"});
-        this.shadowRoot.appendChild(header.content.cloneNode(true));
-    }
+// Slot element using header template
+class AppHeader extends HTMLElement {
+  constructor() {
+    super();
+    this.attachShadow({ mode: 'open' });
+    this.shadowRoot.appendChild(header.content.cloneNode(true));
+  }
 }
 customElements.define('app-header', AppHeader);
