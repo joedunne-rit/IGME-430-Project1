@@ -1,13 +1,13 @@
 const fs = require('fs');
 
-const appFooter = fs.readFileSync(`${__dirname}/./client/app-footer.js`);
-const appHeader = fs.readFileSync(`${__dirname}/./client/app-header.js`);
-const appNav = fs.readFileSync(`${__dirname}/./client/app-nav.js`);
-const app = fs.readFileSync(`${__dirname}/./client/app.js`);
-const favorites = fs.readFileSync(`${__dirname}/./client/favorites.js`);
-const searchResult = fs.readFileSync(`${__dirname}/client/search-result.js`);
-const storage = fs.readFileSync(`${__dirname}/client/storage.js`);
-const firebase = fs.readFileSync(`${__dirname}/client/firebase.js`);
+const appFooter = fs.readFileSync(`${__dirname}/../client/src/app-footer.js`);
+const appHeader = fs.readFileSync(`${__dirname}/../client/src/app-header.js`);
+const appNav = fs.readFileSync(`${__dirname}/../client/src/app-nav.js`);
+const app = fs.readFileSync(`${__dirname}/../client/src/app.js`);
+const favorites = fs.readFileSync(`${__dirname}/../client/src/favorites.js`);
+const searchResult = fs.readFileSync(`${__dirname}/../client/src/search-result.js`);
+const storage = fs.readFileSync(`${__dirname}/../client/src/storage.js`);
+const firebase = fs.readFileSync(`${__dirname}/../client/src/firebase.js`);
 
 const getJavascript = (request, response, jsFile) => {
   response.writeHead(200, { 'Content-Type': 'application/javascript' });
