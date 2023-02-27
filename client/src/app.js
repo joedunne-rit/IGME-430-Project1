@@ -1,6 +1,7 @@
 import * as storage from './storage.js';
 import * as spellResult from './search-result.js';
 import * as firebase from './firebase.js';
+import * as spellItem from './spell-item.js';
 
 const searchBar = document.querySelector('#search-bar');
 const dndclass = document.querySelector('#class');
@@ -100,6 +101,11 @@ function createResultList(array) {
     }
   }
   status.innerHTML = 'Results found';
+}
+
+//Remove a spell list item
+function removeItem() {
+  
 }
 
 // fetches json from api

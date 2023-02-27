@@ -8,6 +8,7 @@ const favorites = fs.readFileSync(`${__dirname}/../client/src/favorites.js`);
 const searchResult = fs.readFileSync(`${__dirname}/../client/src/search-result.js`);
 const storage = fs.readFileSync(`${__dirname}/../client/src/storage.js`);
 const firebase = fs.readFileSync(`${__dirname}/../client/src/firebase.js`);
+const spellItem = fs.readFileSync(`${__dirname}/../client/src/spell-item.js`);
 
 const getJavascript = (request, response, jsFile) => {
   response.writeHead(200, { 'Content-Type': 'application/javascript' });
@@ -47,6 +48,10 @@ const getFirebase = (request, response) => {
   getJavascript(request, response, firebase);
 };
 
+const getSpellItem = (request, response) => {
+    getJavascript(request, response, spellItem);
+}
+
 module.exports.getAppFooter = getAppFooter;
 module.exports.getAppHeader = getAppHeader;
 module.exports.getApp = getApp;
@@ -55,3 +60,4 @@ module.exports.getFavorites = getFavorites;
 module.exports.getSearchResult = getSearchResult;
 module.exports.getStorage = getStorage;
 module.exports.getFirebase = getFirebase;
+module.exports.getSpellItem = getSpellItem;

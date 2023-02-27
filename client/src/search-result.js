@@ -13,6 +13,7 @@ result.innerHTML = `
     <div class="card">
         <div class="card-header mb-3">
             <span class="card-header-title" id="name">Spell name</span>
+            <button class="button m-2" id="add">Add to List</button>
             <button class="button m-2" id="favorite">Favorite</button>
         </div>
         <span class="ml-3" id="level">Level #</span>
@@ -72,6 +73,9 @@ class SearchResult extends HTMLElement {
         this.favoriteBtn.innerHTML = 'Favorited';
       }
     }
+    //Button that adds new item to spell list
+    //If spell is added already, black out
+    this.addBtn = this.shadowRoot.querySelector('#add');
 
     this.callback = this.callback || ((obj) => console.log(`${obj}`));
 
@@ -86,6 +90,11 @@ class SearchResult extends HTMLElement {
         this.callback(name);
       } else { console.log(`${this.dataset.name} already added to favorites`); }
     };
+
+    //Adds item to spell list
+    this.addBtn.onclick = () => {
+
+    }
   }
 
   disconnectedCallback() {

@@ -6,6 +6,7 @@ const pageHandler = require('./pageResponses.js');
 const mediaHandler = require('./mediaResponses.js');
 const javaScriptHandler = require('./javascriptResponses.js');
 const favoritesHandler = require('./favoriteResponses.js');
+const spellBookHandler = require('./spellbookResponses.js');
 
 const port = process.env.PORT || process.env.NODE_PORT || 3000;
 
@@ -28,11 +29,14 @@ const urlStruct = {
     '/search-result.js': javaScriptHandler.getSearchResult,
     '/storage.js': javaScriptHandler.getStorage,
     '/firebase.js': javaScriptHandler.getFirebase,
+    '/spell-item.js': javaScriptHandler.getSpellItem,
 
     // media files
     '/images/spellbook.png': mediaHandler.getSpellBook,
     '/images/spellbook-ui.png': mediaHandler.getUI,
 
+    // other endpoints
+    '/loadSpells': spellBookHandler.loadSpellList,
     '/notFound': pageHandler.notFound,
   },
   HEAD: {
@@ -40,7 +44,7 @@ const urlStruct = {
   },
   POST: {
     '/addFavorite': favoritesHandler.addFavorite,
-    '/saveSpells': spellbookHandler.addSpellList,
+    '/saveSpells': spellBookHandler.addSpellList,
   },
 };
 
