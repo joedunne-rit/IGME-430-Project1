@@ -40,6 +40,7 @@ const urlStruct = {
   },
   POST: {
     '/addFavorite': favoritesHandler.addFavorite,
+    '/saveSpells': spellbookHandler.addSpellList,
   },
 };
 
