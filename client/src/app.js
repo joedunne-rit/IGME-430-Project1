@@ -12,8 +12,11 @@ const ritual = document.querySelector('#ritual');
 const limit = document.querySelector('#result-limit');
 const searchButton = document.querySelector('#btn-search');
 const clearButton = document.querySelector('#btn-clear');
+const listCreator = document.querySelector('#list-creator');
 const results = document.querySelector('#element-card-holder');
 const status = document.querySelector('#element-status');
+
+const spellList = [];
 
 // Assigns functions to buttons
 const init = () => {
@@ -103,9 +106,39 @@ function createResultList(array) {
   status.innerHTML = 'Results found';
 }
 
+//Add a spell list item
+export function addItem(name, level) {
+  //Only adds item if it does not already exist
+  if(!spellList[name]){
+    //Adds to spellList item
+    spellList.push(name);
+    //Creates item to display for user
+    let newItem = spellItem.createSpell(name);
+    //Determines which level to place item
+    let levelSection;
+    switch (level) {
+      case '0': levelSection = listCreator.querySelector('list0');
+      case '1': levelSection = listCreator.querySelector('list1');
+      case '2': levelSection = listCreator.querySelector('list2');
+      case '3': levelSection = listCreator.querySelector('list3');
+      case '4': levelSection = listCreator.querySelector('list4');
+      case '5': levelSection = listCreator.querySelector('list5');
+      case '6': levelSection = listCreator.querySelector('list6');
+      case '7': levelSection = listCreator.querySelector('list7');
+      case '8': levelSection = listCreator.querySelector('list8');
+      case '9': levelSection = listCreator.querySelector('list9');
+    }
+    levelSelection.appendChild(newItem);
+  }
+}
+
 //Remove a spell list item
-function removeItem() {
+export function removeItem(name) {
   
+}
+
+async function saveSpells() {
+  //Construct url using data from spell list
 }
 
 // fetches json from api

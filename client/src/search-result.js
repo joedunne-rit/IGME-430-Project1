@@ -1,4 +1,5 @@
 import * as storage from './storage.js';
+import * as app from './app.js';
 
 // Result card template
 const result = document.createElement('template');
@@ -93,7 +94,7 @@ class SearchResult extends HTMLElement {
 
     //Adds item to spell list
     this.addBtn.onclick = () => {
-
+      app.addItem(this.dataset.name, this.dataset.level);
     }
   }
 

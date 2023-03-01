@@ -1,3 +1,5 @@
+import * as app from './app.js';
+
 const item = document.createElement('template');
 item.innerHTML = `
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
@@ -22,7 +24,8 @@ class spellItem extends HTMLElement {
         this.callback = this.callback || ((obj) => console.log(`${obj}`));
 
         this.removeBtn.onClick = () => {
-            //Destroy this element
+            app.removeItem()
+            this.remove();
         }
     }
 
