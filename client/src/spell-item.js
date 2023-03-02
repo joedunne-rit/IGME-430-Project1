@@ -13,10 +13,10 @@ class spellItem extends HTMLElement {
     constructor() {
         super();
         this.attachShadow({ mode: 'open' });
-        this.shadowRoot.appendChild(result.content.cloneNode(true));
+        this.shadowRoot.appendChild(item.content.cloneNode(true));
     };
 
-    connnectedCallback() {
+    connectedCallback() {
         this.shadowRoot.querySelector("#spell-name").innerHTML = this.dataset.spellName;
 
         this.removeBtn = this.shadowRoot.querySelector("#remove");
@@ -35,8 +35,8 @@ class spellItem extends HTMLElement {
 }
 customElements.define('spell-item', spellItem);
 
-export function createSpell(spellName) {
+export function createSpell(name) {
     const newSpell = document.createElement('spell-item');
-    newSpell.dataset.spellName = spellName;
+    newSpell.dataset.spellName = name;
     return newSpell;
 }

@@ -109,26 +109,33 @@ function createResultList(array) {
 //Add a spell list item
 export function addItem(name, level) {
   //Only adds item if it does not already exist
+  for (let spell of spellList){
+    if (spell == name){
+      console.log("item added already");
+      return;
+    }
+  }
   if(!spellList[name]){
     //Adds to spellList item
     spellList.push(name);
+    console.log(spellList);
     //Creates item to display for user
     let newItem = spellItem.createSpell(name);
     //Determines which level to place item
     let levelSection;
     switch (level) {
-      case '0': levelSection = listCreator.querySelector('list0');
-      case '1': levelSection = listCreator.querySelector('list1');
-      case '2': levelSection = listCreator.querySelector('list2');
-      case '3': levelSection = listCreator.querySelector('list3');
-      case '4': levelSection = listCreator.querySelector('list4');
-      case '5': levelSection = listCreator.querySelector('list5');
-      case '6': levelSection = listCreator.querySelector('list6');
-      case '7': levelSection = listCreator.querySelector('list7');
-      case '8': levelSection = listCreator.querySelector('list8');
-      case '9': levelSection = listCreator.querySelector('list9');
+      case '0th-level': levelSection = listCreator.querySelector('#list0'); break;
+      case '1st-level': levelSection = listCreator.querySelector('#list1'); break;
+      case '2nd-level': levelSection = listCreator.querySelector('#list2'); break;
+      case '3rd-level': levelSection = listCreator.querySelector('#list3'); break;
+      case '4th-level': levelSection = listCreator.querySelector('#list4'); break;
+      case '5th-level': levelSection = listCreator.querySelector('#list5'); break;
+      case '6th-level': levelSection = listCreator.querySelector('#list6'); break;
+      case '7th-level': levelSection = listCreator.querySelector('#list7'); break;
+      case '8th-level': levelSection = listCreator.querySelector('#list8'); break;
+      case '9th-level': levelSection = listCreator.querySelector('#list9'); break;
     }
-    levelSelection.appendChild(newItem);
+    levelSection.appendChild(newItem);
   }
 }
 

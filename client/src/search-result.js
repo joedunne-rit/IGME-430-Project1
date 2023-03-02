@@ -100,6 +100,7 @@ class SearchResult extends HTMLElement {
 
   disconnectedCallback() {
     this.favoriteBtn.onclick = null;
+    this.addBtn.onclick = null;
   }
 }
 customElements.define('search-result', SearchResult);
