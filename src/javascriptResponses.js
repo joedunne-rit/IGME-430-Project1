@@ -49,8 +49,8 @@ const getFirebase = (request, response) => {
 };
 
 const getSpellItem = (request, response) => {
-    getJavascript(request, response, spellItem);
-}
+  getJavascript(request, response, spellItem);
+};
 
 module.exports.getAppFooter = getAppFooter;
 module.exports.getAppHeader = getAppHeader;

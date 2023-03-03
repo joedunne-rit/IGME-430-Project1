@@ -20,7 +20,7 @@ const listInput = document.querySelector('#list-name');
 const results = document.querySelector('#element-card-holder');
 const status = document.querySelector('#element-status');
 
-const spellList = {};
+let spellList = {};
 
 // Assigns functions to buttons
 const init = () => {
@@ -124,7 +124,6 @@ export function addItem(name, level) {
       'name': name,
       'level': level
     };
-    console.log(spellList);
     //Creates item to display for user
     let newItem = spellItem.createSpell(name);
     //Determines which level to place item
@@ -161,9 +160,12 @@ async function saveSpells() {
   });
 
   //Handle response, create visuals for whether it saved successfully or not
-  let obj = await response.json();
-
-  console.log(obj.message);
+  
+  if (response.status !== 204)
+  {
+    let obj = await response.json();
+    console.log(obj.message);
+  }
 }
 
 async function loadSpells() {
@@ -178,11 +180,29 @@ async function loadSpells() {
   });
 
   let obj = await response.json();
-  if (response.status == 401){
+  if (response.status == 404){
     console.log(obj.message);
     return;
   }
   console.log(obj);
+
+  //Replace current spellList with loaded spellList
+  spellList = {};
+  //Clear currently displayed list & replace all elements with new list items
+  listCreator.querySelector('#list0').innerHTML = '';
+  listCreator.querySelector('#list1').innerHTML = '';
+  listCreator.querySelector('#list2').innerHTML = '';
+  listCreator.querySelector('#list3').innerHTML = '';
+  listCreator.querySelector('#list4').innerHTML = '';
+  listCreator.querySelector('#list5').innerHTML = '';
+  listCreator.querySelector('#list6').innerHTML = '';
+  listCreator.querySelector('#list7').innerHTML = '';
+  listCreator.querySelector('#list8').innerHTML = '';
+  listCreator.querySelector('#list9').innerHTML = '';
+  //Iterate through each key in new list, using addSpell for each one
+  for (let item in obj){
+    addItem(obj[item].name, obj[item].level);
+  }
 }
 
 // fetches json from api

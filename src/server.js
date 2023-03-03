@@ -5,7 +5,7 @@ const query = require('querystring');
 const pageHandler = require('./pageResponses.js');
 const mediaHandler = require('./mediaResponses.js');
 const javaScriptHandler = require('./javascriptResponses.js');
-const favoritesHandler = require('./favoriteResponses.js');
+// const favoritesHandler = require('./favoriteResponses.js');
 const spellBookHandler = require('./spellbookResponses.js');
 
 const port = process.env.PORT || process.env.NODE_PORT || 3000;
@@ -43,7 +43,7 @@ const urlStruct = {
     '/notFound': pageHandler.notFoundHead,
   },
   POST: {
-    '/addFavorite': favoritesHandler.addFavorite,
+    // '/addFavorite': favoritesHandler.addFavorite,
     '/saveSpells': spellBookHandler.addSpellList,
   },
 };
@@ -63,7 +63,7 @@ const handlePost = (request, response, parsedURL) => {
     const bodyParams = query.parse(bodyString);
     urlStruct[request.method][parsedURL.pathname](request, response, bodyParams);
   });
-}
+};
 
 const onRequest = (request, response) => {
   const parsedURL = url.parse(request.url);
@@ -74,7 +74,7 @@ const onRequest = (request, response) => {
   }
 
   if (urlStruct[request.method][parsedURL.pathname]) {
-    if(request.method === 'POST'){
+    if (request.method === 'POST') {
       return handlePost(request, response, parsedURL);
     }
     return urlStruct[request.method][parsedURL.pathname](request, response);
