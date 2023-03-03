@@ -141,7 +141,15 @@ export function addItem(name, level) {
 
 //Remove a spell list item
 export function removeItem(name) {
-  
+  let i = 0;
+  for (let spell of spellList){
+    if (spell == name){
+      spellList.splice(i, 1);
+      console.log(spellList);
+      return;
+    }
+    i++;
+  }
 }
 
 async function saveSpells() {

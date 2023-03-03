@@ -21,10 +21,10 @@ class spellItem extends HTMLElement {
 
         this.removeBtn = this.shadowRoot.querySelector("#remove");
 
-        this.callback = this.callback || ((obj) => console.log(`${obj}`));
+        //this.callback = this.callback || ((obj) => console.log(`${obj}`));
 
-        this.removeBtn.onClick = () => {
-            app.removeItem()
+        this.removeBtn.onclick = () => {
+            app.removeItem(this.dataset.spellName);
             this.remove();
         }
     }
