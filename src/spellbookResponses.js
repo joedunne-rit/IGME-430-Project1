@@ -48,18 +48,19 @@ const addSpellList = (request, response, spellListData) => {
     return;
 }
 
-const loadSpellList = (request, response, data) => {
-    if (!users[data.userName][data.listName]){
+const loadSpellList = (request, response) => {
+    const userName = request.headers.name;
+    const listName = request.headers.list;
+    if (!users[userName][listName]){
         const responseMessage = {message: 'data not found'};
         response.writeHead(401, {'Content-Type':'application/json'});
         response.write(responseMessage);
         response.end();
         return;
     }
-    const listToLoad = users[data.userName][data.listName];
-    const listResponse = {spellList: listToLoad};
+    const listToLoad = users[userName][listName];
     response.writeHead(200, {'Content-Type':'application/json'});
-    response.write(JSON.stringify(listResponse));
+    response.write(JSON.stringify(listToLoad));
     response.end();
     return;
 }

@@ -20,7 +20,7 @@ const listInput = document.querySelector('#list-name');
 const results = document.querySelector('#element-card-holder');
 const status = document.querySelector('#element-status');
 
-const spellList = [];
+const spellList = {};
 
 // Assigns functions to buttons
 const init = () => {
@@ -28,7 +28,7 @@ const init = () => {
   searchButton.onclick = searcher;
   clearButton.onclick = clear;
   saveButton.onclick = saveSpells;
-  //loadButton.onclick = loadSpells;
+  loadButton.onclick = loadSpells;
 
   const storedSettings = storage.getSettings();
   searchBar.value = storedSettings.spellName;
@@ -115,22 +115,22 @@ function createResultList(array) {
 //Add a spell list item
 export function addItem(name, level) {
   //Only adds item if it does not already exist
-  for (let spell of spellList){
-    if (spell == name){
-      console.log("item added already");
-      return;
-    }
+  if (spellList[name]){
+    console.log("item added already");
+    return;
   }
-  if(!spellList[name]){
     //Adds to spellList item
-    spellList.push(name);
+    spellList[name] = {
+      'name': name,
+      'level': level
+    };
     console.log(spellList);
     //Creates item to display for user
     let newItem = spellItem.createSpell(name);
     //Determines which level to place item
     let levelSection;
     switch (level) {
-      case '0th-level': levelSection = listCreator.querySelector('#list0'); break;
+      case 'Cantrip': levelSection = listCreator.querySelector('#list0'); break;
       case '1st-level': levelSection = listCreator.querySelector('#list1'); break;
       case '2nd-level': levelSection = listCreator.querySelector('#list2'); break;
       case '3rd-level': levelSection = listCreator.querySelector('#list3'); break;
@@ -142,36 +142,47 @@ export function addItem(name, level) {
       case '9th-level': levelSection = listCreator.querySelector('#list9'); break;
     }
     levelSection.appendChild(newItem);
-  }
 }
 
 //Remove a spell list item
 export function removeItem(name) {
-  let i = 0;
-  for (let spell of spellList){
-    if (spell == name){
-      spellList.splice(i, 1);
-      console.log(spellList);
-      return;
-    }
-    i++;
-  }
+  delete spellList[name];
+  console.log(spellList);
 }
 
 async function saveSpells() {
   //Construct url using data from spell list
   const userName = userInput.value;
   const listName = listInput.value;
-  const spellbookData = `name=${userName}&list=${listName}&spells=${spellList.toString()}`;
+  const spellbookData = `name=${userName}&list=${listName}&spells=${JSON.stringify(spellList)}`;
   let response = await fetch('/saveSpells', {
     method: 'POST',
     body: spellbookData
-  })
+  });
 
   //Handle response, create visuals for whether it saved successfully or not
   let obj = await response.json();
 
   console.log(obj.message);
+}
+
+async function loadSpells() {
+  const userName = userInput.value;
+  const listName = listInput.value;
+  let response = await fetch('/loadSpells', {
+    method: 'GET',
+    headers: {
+      name: userName,
+      list: listName
+    }
+  });
+
+  let obj = await response.json();
+  if (response.status == 401){
+    console.log(obj.message);
+    return;
+  }
+  console.log(obj);
 }
 
 // fetches json from api
