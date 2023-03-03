@@ -70,7 +70,7 @@ const loadSpellList = (request, response) => {
 const loadSpellHead = (request, response) => {
     if (users[userName])
     {
-    response.writeHead(200, {'Content-Type':'application/json'});
+        if (users[userName][listName]){response.writeHead(200, {'Content-Type':'application/json'});}
     } else { response.writeHead(404, {'Content-Type':'application/json'});}
     response.end();
 }
