@@ -13,6 +13,10 @@ const limit = document.querySelector('#result-limit');
 const searchButton = document.querySelector('#btn-search');
 const clearButton = document.querySelector('#btn-clear');
 const listCreator = document.querySelector('#list-creator');
+const saveButton = document.querySelector('#btn-save');
+const loadButton = document.querySelector('#btn-load');
+const userInput = document.querySelector('#user-name');
+const listInput = document.querySelector('#list-name');
 const results = document.querySelector('#element-card-holder');
 const status = document.querySelector('#element-status');
 
@@ -23,6 +27,8 @@ const init = () => {
   console.log('initializing');
   searchButton.onclick = searcher;
   clearButton.onclick = clear;
+  saveButton.onclick = saveSpells;
+  //loadButton.onclick = loadSpells;
 
   const storedSettings = storage.getSettings();
   searchBar.value = storedSettings.spellName;
@@ -154,6 +160,18 @@ export function removeItem(name) {
 
 async function saveSpells() {
   //Construct url using data from spell list
+  const userName = userInput.value;
+  const listName = listInput.value;
+  const spellbookData = `name=${userName}&list=${listName}&spells=${spellList.toString()}`;
+  let response = await fetch('/saveSpells', {
+    method: 'POST',
+    body: spellbookData
+  })
+
+  //Handle response, create visuals for whether it saved successfully or not
+  let obj = await response.json();
+
+  console.log(obj.message);
 }
 
 // fetches json from api
