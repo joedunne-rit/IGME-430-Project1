@@ -112,7 +112,7 @@ function createResultList(array) {
   status.innerHTML = 'Results found';
 }
 
-//Add a spell list item
+//Add a spell list item to currently editable list
 export function addItem(name, level) {
   //Only adds item if it does not already exist
   if (spellList[name]){
@@ -149,6 +149,7 @@ export function removeItem(name) {
   console.log(spellList);
 }
 
+//Sends POST request to save a spell list under a username and list name
 async function saveSpells() {
   //Construct url using data from spell list
   const userName = userInput.value;
@@ -168,14 +169,15 @@ async function saveSpells() {
   }
 }
 
+//Sends GET request for a list of spells
 async function loadSpells() {
   const userName = userInput.value;
   const listName = listInput.value;
-  let response = await fetch('/loadSpells', {
+  const URL = `/loadSpells?name=${userName}&list=${listName}`;
+  let response = await fetch(URL, {
     method: 'GET',
     headers: {
-      name: userName,
-      list: listName
+      accept: 'application/json'
     }
   });
 

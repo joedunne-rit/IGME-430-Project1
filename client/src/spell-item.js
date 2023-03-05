@@ -1,5 +1,6 @@
 import * as app from './app.js';
 
+//Spell item template
 const item = document.createElement('template');
 item.innerHTML = `
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
@@ -9,6 +10,8 @@ item.innerHTML = `
     </div>
 `
 
+//Component used as part of spell list creator
+//Displays spell name & a button to remove it from the list
 class spellItem extends HTMLElement {
     constructor() {
         super();

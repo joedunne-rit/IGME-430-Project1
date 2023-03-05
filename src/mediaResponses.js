@@ -1,3 +1,4 @@
+// Handles requests for images/media
 const fs = require('fs');
 
 const spellBook = fs.readFileSync(`${__dirname}/../media/spellbook.png`);

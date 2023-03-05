@@ -41,6 +41,7 @@ const urlStruct = {
   },
   HEAD: {
     '/notFound': pageHandler.notFoundHead,
+    '/loadSpells': spellBookHandler.loadSpellHead,
   },
   POST: {
     // '/addFavorite': favoritesHandler.addFavorite,
