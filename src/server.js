@@ -18,7 +18,7 @@ const urlStruct = {
     '/app.html': pageHandler.getApp,
     '/favorites.html': pageHandler.getFavorites,
     '/documentation.html': pageHandler.getDocumentation,
-    '/default-styles.css': pageHandler.getStyle,
+    '/styles/default-styles.css': pageHandler.getStyle,
 
     // javascript files
     '/app-header.js': javaScriptHandler.getAppHeader,

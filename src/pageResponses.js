@@ -5,7 +5,7 @@ const index = fs.readFileSync(`${__dirname}/../client/client.html`);
 const app = fs.readFileSync(`${__dirname}/../client/app.html`);
 const favorites = fs.readFileSync(`${__dirname}/../client/favorites.html`);
 const documentation = fs.readFileSync(`${__dirname}/../client/documentation.html`);
-const style = fs.readFileSync(`${__dirname}/../client/style.css`);
+const style = fs.readFileSync(`${__dirname}/../client/default-styles.css`);
 
 const getPage = (request, response, page) => {
   response.writeHead(200, { 'Content-Type': 'text/html' });
