@@ -162,11 +162,12 @@ async function saveSpells() {
 
   //Handle response, create visuals for whether it saved successfully or not
   
-  if (response.status !== 204)
+  if (response.status !== 204 && response.status !== 201)
   {
     let obj = await response.json();
     console.log(obj.message);
-  }
+    listCreator.querySelector('#messagebox').innerHTML = "Error saving spells"
+  } else {listCreator.querySelector('#messagebox').innerHTML = "Spell list saved"}
 }
 
 //Sends GET request for a list of spells
@@ -184,6 +185,7 @@ async function loadSpells() {
   let obj = await response.json();
   if (response.status == 404){
     console.log(obj.message);
+    listCreator.querySelector('#messagebox').innerHTML = "Spell list not found"
     return;
   }
   console.log(obj);
@@ -205,6 +207,7 @@ async function loadSpells() {
   for (let item in obj){
     addItem(obj[item].name, obj[item].level);
   }
+  listCreator.querySelector('#messagebox').innerHTML = "Spell list loaded"
 }
 
 // fetches json from api
