@@ -42,10 +42,10 @@ const init = () => {
 };
 
 // Executes search when search button is clicked
-function searcher() {
+async function searcher() {
   status.innerHTML = 'Searching...';
-  const urlBase = 'https://api.open5e.com/spells';
-  loadJsonFetch(constructURL(urlBase));
+  //const urlBase = '';
+  //loadJsonFetch(constructURL(urlBase));
   console.log('search clicked');
   const settings = {
     spellName: searchBar.value,
@@ -57,6 +57,18 @@ function searcher() {
     limit: limit.value,
   };
   storage.storeSettings(settings);
+  let constructedURL = constructURL();
+  let URL = `/searchSpells?url=${constructedURL}`;
+
+  let response = await fetch(URL, {
+    method: 'GET',
+    headers: {
+      accept: 'application/json'
+    }
+  });
+
+  let searchResult = await response.json();
+  createResultList(searchResult.results);
 }
 
 // Clears results when clear button is clicked
@@ -67,8 +79,9 @@ function clear() {
 
 // Constructs a url based on input
 // Values to do: range, components, duration, casting time
-function constructURL(urlBase) {
-  let url = `${urlBase}/?search=${searchBar.value}`;
+function constructURL() {
+  //let url = `${urlBase}/?search=${searchBar.value}`;
+  let url = `/?search=${searchBar.value}`;
   if (dndclass.value != '--') {
     url += `&dnd_class=${dndclass.value}`;
   }
@@ -211,7 +224,7 @@ async function loadSpells() {
 }
 
 // fetches json from api
-async function loadJsonFetch(url) {
+/*async function loadJsonFetch(url) {
   // await ("stay on this line") until the first promise is resolved, meaning the data has downloaded
   // note: default limit for open5e is 50 results unless otherwise specified
   const response = await fetch(url);
@@ -220,6 +233,6 @@ async function loadJsonFetch(url) {
   const json = await response.json();
   console.log(json.results);
   createResultList(json.results);
-}
+}*/
 
 window.onload = init;

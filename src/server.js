@@ -38,6 +38,7 @@ const urlStruct = {
     // other endpoints
     '/loadSpells': spellBookHandler.loadSpellList,
     '/notFound': pageHandler.notFound,
+    '/searchSpells': spellBookHandler.search,
   },
   HEAD: {
     '/notFound': pageHandler.notFoundHead,
