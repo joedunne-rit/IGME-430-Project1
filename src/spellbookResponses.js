@@ -83,31 +83,29 @@ const loadSpellHead = (request, response) => {
 
 // Searches for spells and returns data
 const search = async (request, response) => {
-    const params = new URLSearchParams(request.url);
-    let constructedURL = params.get('/searchSpells?url');
-    if(params.get('dnd_class') != null)
-    {constructedURL = constructedURL + `&dnd_class=${params.get('dnd_class')}`;}
-    if(params.get('school') != null)
-    {constructedURL = constructedURL + `&school=${params.get('school')}`;}
-    if(params.get('level_int__iexact') != null)
-    {constructedURL = constructedURL + `&level_int__iexact=${params.get('level_int__iexact')}`;}
-    if(params.get('concentration') != null)
-    {constructedURL = constructedURL + `&concentration=${params.get('concentration')}`;}
-    constructedURL = constructedURL + `&limit=${params.get('limit')}`;
-    const url = urlBase + constructedURL;
-    console.log(url);
+  const params = new URLSearchParams(request.url);
+  let constructedURL = params.get('/searchSpells?url');
+  if (params.get('dnd_class') != null) { constructedURL = `${constructedURL}&dnd_class=${params.get('dnd_class')}`; }
+  if (params.get('school') != null) { constructedURL = `${constructedURL}&school=${params.get('school')}`; }
+  if (params.get('level_int__iexact') != null) { constructedURL = `${constructedURL}&level_int__iexact=${params.get('level_int__iexact')}`; }
+  if (params.get('concentration') != null) { constructedURL = `${constructedURL}&concentration=${params.get('concentration')}`; }
+  constructedURL = `${constructedURL}&limit=${params.get('limit')}`;
+  const url = urlBase + constructedURL;
+  console.log(url);
 
-    // await ("stay on this line") until the first promise is resolved, meaning the data has downloaded
-    // note: default limit for open5e is 50 results unless otherwise specified
-    const response2 = await fetch(url);
+  // await ("stay on this line") until the first promise is resolved,
+  // meaning the data has downloaded
+  // note: default limit for open5e is 50 results unless otherwise specified
+  const response2 = await fetch(url);
 
-    // await ("stay on this line") until the second promise is resolved, meaning we now have a JSON object
-    const searchResult = await response2.json();
-    
-    response.writeHead(200, { 'Content-Type': request.headers.accept });
-    response.write(JSON.stringify(searchResult));
-    response.end();
-}
+  // await ("stay on this line") until the second promise is resolved,
+  // meaning we now have a JSON object
+  const searchResult = await response2.json();
+
+  response.writeHead(200, { 'Content-Type': request.headers.accept });
+  response.write(JSON.stringify(searchResult));
+  response.end();
+};
 
 module.exports.addSpellList = addSpellList;
 module.exports.loadSpellList = loadSpellList;
