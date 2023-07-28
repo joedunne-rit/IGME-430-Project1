@@ -89,7 +89,7 @@ function constructURL() {
     url += `&school=${school.value}`;
   }
   if (level.value != '--') {
-    if (level.value == 'Cantrip') { url += '&level_int__iexact=0'; } else { url += `&level_int__iexact=${level.value}`; }
+    if (level.value == 'Cantrip') { url += '&level_int=0'; } else { url += `&level_int=${level.value}`; }
   }
   if (concentration.checked) {
     url += '&concentration=yes';

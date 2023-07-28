@@ -87,7 +87,7 @@ const search = async (request, response) => {
   let constructedURL = params.get('/searchSpells?url');
   if (params.get('dnd_class') != null) { constructedURL = `${constructedURL}&dnd_class=${params.get('dnd_class')}`; }
   if (params.get('school') != null) { constructedURL = `${constructedURL}&school=${params.get('school')}`; }
-  if (params.get('level_int__iexact') != null) { constructedURL = `${constructedURL}&level_int__iexact=${params.get('level_int__iexact')}`; }
+  if (params.get('level_int') != null) { constructedURL = `${constructedURL}&level_int=${params.get('level_int')}`; }
   if (params.get('concentration') != null) { constructedURL = `${constructedURL}&concentration=${params.get('concentration')}`; }
   constructedURL = `${constructedURL}&limit=${params.get('limit')}`;
   const url = urlBase + constructedURL;
